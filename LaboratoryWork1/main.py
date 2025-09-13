@@ -1,4 +1,4 @@
-def searchingTwo(nums: list, target: int):
+def searchingTwo(nums: list[int], target: int):
     fstAcc = {}
     for i in range(len(nums)):
         if nums[i] in fstAcc:
@@ -12,4 +12,5 @@ def searchingTwo(nums: list, target: int):
                 return [i, indexes[0]]
             elif len(indexes) > 1:
                 return [i, indexes[1]]
+
     return None
