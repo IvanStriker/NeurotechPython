@@ -1,0 +1,10 @@
+LaboratoryWork1 package
+=======================
+
+Module contents
+---------------
+
+.. automodule:: LaboratoryWork1
+   :members:
+   :show-inheritance:
+   :undoc-members:
