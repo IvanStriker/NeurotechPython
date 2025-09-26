@@ -21,7 +21,7 @@ class SearcherInputTypeError(Exception):
         """
         self.message = "\n".join(
             [SearcherInputTypeError.RESULTS[i]
-             for i in SearcherInputTypeError.__checkTypes__(nums, target)])
+             for i in SearcherInputTypeError._checkTypes(nums, target)])
 
     def haveAnError(self):
         """Returns if the arguments given to the constructor are valid.
@@ -121,7 +121,7 @@ class Searcher:
         Returns:
             List[int]: The found two numbers of 'target' sum from 'nums'.
         """
-        if any([not Searcher.__checkInput__(nums, target, i, noexcept)
+        if any([not Searcher._checkInput(nums, target, i, noexcept)
                 for i in [SearcherInputTypeError,
                           SearcherInputValueError]]):
             return None
