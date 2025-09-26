@@ -11,5 +11,5 @@ Author: Ivan Vinogradov
 - file _searcher.py_ consists of 3 classes: _Searcher_ (main class), _SearcherInputTypeError_ and _SearcherInputValueError_ (classes, describing errors being raised in searchTwoWithSum)
 - file _test\_searcher.py_ includes all the testing logic
 #### Docs description:
-- docs can be found by opening _. / LaboratoryWork1 / docs / \_build / html / index.html_
+- docs can be found by opening _. / LaboratoryWork1 / docs / html / index.html_
 - other files in _. / LaboratoryWork1 / docs_ are for Sphinx only

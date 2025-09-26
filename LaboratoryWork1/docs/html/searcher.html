@@ -1,0 +1,233 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="python" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>searcher module &mdash; LaboratoryWork1 1.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=9cbfb4ae"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="test_searcher module" href="test_searcher.html" />
+    <link rel="prev" title="src" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            LaboratoryWork1
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">searcher module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#searcher.Searcher"><code class="docutils literal notranslate"><span class="pre">Searcher</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#searcher.Searcher.searchTwoWithSum"><code class="docutils literal notranslate"><span class="pre">Searcher.searchTwoWithSum()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#searcher.SearcherInputTypeError"><code class="docutils literal notranslate"><span class="pre">SearcherInputTypeError</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#searcher.SearcherInputTypeError.RESULTS"><code class="docutils literal notranslate"><span class="pre">SearcherInputTypeError.RESULTS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">SearcherInputTypeError.RESULTS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#searcher.SearcherInputTypeError.haveAnError"><code class="docutils literal notranslate"><span class="pre">SearcherInputTypeError.haveAnError()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#searcher.SearcherInputValueError"><code class="docutils literal notranslate"><span class="pre">SearcherInputValueError</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#searcher.SearcherInputValueError.haveAnError"><code class="docutils literal notranslate"><span class="pre">SearcherInputValueError.haveAnError()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="test_searcher.html">test_searcher module</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">LaboratoryWork1</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">src</a></li>
+      <li class="breadcrumb-item active">searcher module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/searcher.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-searcher">
+<span id="searcher-module"></span><h1>searcher module<a class="headerlink" href="#module-searcher" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="searcher.Searcher">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">searcher.</span></span><span class="sig-name descname"><span class="pre">Searcher</span></span><a class="headerlink" href="#searcher.Searcher" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class includes program's main algorithm.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="searcher.Searcher.searchTwoWithSum">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">searchTwoWithSum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nums</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noexcept</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#searcher.Searcher.searchTwoWithSum" title="Link to this definition"></a></dt>
+<dd><p>This method finds two numbers of sum 'target' in 'nums' list
+in linear time. If there is more than one combination
+providing with the sum needed, the algorithm will return
+the least in lexicographic order list of two indexes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nums</strong> (<em>List</em><em>[</em><em>int</em><em>]</em>) -- The field for search</p></li>
+<li><p><strong>target</strong> (<em>int</em>) -- The sum needed</p></li>
+<li><p><strong>noexcept</strong> (<em>bool</em>) -- If True, the method will return None in
+case of any errors raised. False by default</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="#searcher.SearcherInputTypeError" title="searcher.SearcherInputTypeError"><strong>SearcherInputTypeError</strong></a> -- Warns if the arguments are of invalid types.</p></li>
+<li><p><a class="reference internal" href="#searcher.SearcherInputValueError" title="searcher.SearcherInputValueError"><strong>SearcherInputValueError</strong></a> -- Warns if len(nums) &lt; 2.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The found two numbers of 'target' sum from 'nums'.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="searcher.SearcherInputTypeError">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">searcher.</span></span><span class="sig-name descname"><span class="pre">SearcherInputTypeError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nums</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#searcher.SearcherInputTypeError" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>A class describing errors raised when you put arguments of
+wrong type to Searcher.searchTwoWithSum method.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="searcher.SearcherInputTypeError.RESULTS">
+<span class="sig-name descname"><span class="pre">RESULTS</span></span><a class="headerlink" href="#searcher.SearcherInputTypeError.RESULTS" title="Link to this definition"></a></dt>
+<dd><p>A static variable. It defines
+all the possible messages you can see when an error raised</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[int, str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">RESULTS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{2:</span> <span class="pre">&quot;nums</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">a</span> <span class="pre">list,</span> <span class="pre">but</span> <span class="pre">it</span> <span class="pre">isn't&quot;,</span> <span class="pre">3:</span> <span class="pre">&quot;target</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">an</span> <span class="pre">int,</span> <span class="pre">but</span> <span class="pre">it</span> <span class="pre">isn't&quot;,</span> <span class="pre">4:</span> <span class="pre">&quot;nums</span> <span class="pre">must</span> <span class="pre">consist</span> <span class="pre">of</span> <span class="pre">ints,</span> <span class="pre">but</span> <span class="pre">it</span> <span class="pre">doesn't&quot;}</span></em><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="searcher.SearcherInputTypeError.haveAnError">
+<span class="sig-name descname"><span class="pre">haveAnError</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#searcher.SearcherInputTypeError.haveAnError" title="Link to this definition"></a></dt>
+<dd><p>Returns if the arguments given to the constructor are valid.
+In other words, it tells you whether you need to rais this error
+or not.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>value showing if current error message isn't empty</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="searcher.SearcherInputValueError">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">searcher.</span></span><span class="sig-name descname"><span class="pre">SearcherInputValueError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nums</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#searcher.SearcherInputValueError" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>A class describing errors raised when you put arguments of
+wrong value to Searcher.searchTwoWithSum method.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="searcher.SearcherInputValueError.haveAnError">
+<span class="sig-name descname"><span class="pre">haveAnError</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#searcher.SearcherInputValueError.haveAnError" title="Link to this definition"></a></dt>
+<dd><p>Returns if the arguments given to the constructor are valid.
+In other words, it tells you whether you need to rais this error
+or not.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>value showing if current error message isn't empty</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="src" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="test_searcher.html" class="btn btn-neutral float-right" title="test_searcher module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Ivan Vinogradov.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
