@@ -42,7 +42,7 @@ class SearcherInputTypeError(Exception):
         return self.message
 
     @staticmethod
-    def __checkTypes__(nums, target):
+    def _checkTypes(nums, target):
         """This method forms an array of error messages based on
         the arguments given realizing the logic of the constructor.
         It's for in-class use only.
@@ -138,7 +138,7 @@ class Searcher:
         return None
 
     @staticmethod
-    def __checkInput__(nums, target, classType, noexcept):
+    def _checkInput(nums, target, classType, noexcept):
         if (error := classType(nums, target)).haveAnError():
             if noexcept:
                 return False
