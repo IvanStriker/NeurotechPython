@@ -10,6 +10,7 @@ class Guesser:
               method: str = "bin") -> tuple[int | None, int]:
         """
         This static function tries to guess the target number.
+
         It "knows" only the range that contains the number needed.
         The function uses linear algorithm or binary search based on
         "method" argument.
@@ -19,7 +20,7 @@ class Guesser:
             elements (list[int]): The elements defining the field of
                 search for target.
             method (str): The algorithm used in function to guess
-                numbers. If method = "bin", it uses binary search,
+                numbers. If method == "bin", it uses binary search,
                 otherwise, linear algorithm is used. It's set to
                 "bin" by default.
 
@@ -29,6 +30,7 @@ class Guesser:
                 The first value of tuple is equal to None only
                 if target is not in elements.
         """
+        Guesser._checkInput(target, elements)
         if len(elements) == 0:
             return None, 0
         elements.sort()
@@ -38,12 +40,36 @@ class Guesser:
             return Guesser._guessInLinTime(target, elements)
 
     @staticmethod
+    def _checkInput(target: int,
+                    elements: list[int]):
+        """
+        This static function checks the types of Guesser.guess's params
+
+        Raises:
+            TypeError: if the types of the params don't match
+            the signature
+        """
+        e = TypeError(
+                "Parameters of wrong types for Guesser.guess.\n"
+                "They must match the pattern:\n"
+                "   target: int\n"
+                "   elements: list[int]."
+        )
+        if not (isinstance(target, int) and
+            isinstance(elements, list)):
+            raise e
+        for elem in elements:
+            if not isinstance(elem, int):
+                raise e
+
+    @staticmethod
     def _guessInLinTime(target: int,
                         elements: list[int]
                         ) -> tuple[int | None, int]:
         """
         Realization for Guesser.guess in linear time.
-        For in-class use onle.
+
+        For in-class use only.
 
         Args:
             target (int): The number to guess
@@ -54,7 +80,6 @@ class Guesser:
                 the number guessed and the amount of trials.
                 The first value of tuple is equal to None only
                 if target is not in elements.
-
         """
         for current in range(len(elements)):
             if elements[current] == target:
@@ -67,7 +92,8 @@ class Guesser:
                         ) -> tuple[int | None, int]:
         """
         Realization for Guesser.guess in logarithmic time.
-        For in-class use onle.
+
+        For in-class use only.
 
         Args:
             target (int): The number to guess
@@ -78,17 +104,14 @@ class Guesser:
                 the number guessed and the amount of trials.
                 The first value of tuple is equal to None only
                 if target is not in elements.
-
         """
         leftBound = -1
         rightBound = len(elements)
         trials = 0
-        print(*elements)
         while leftBound < rightBound - 1:
             midIndex = (leftBound + rightBound) // 2
             midNumber = elements[midIndex]
             trials += 1
-            print(midIndex, end=" ")
             if midNumber < target:
                 leftBound = midIndex
             elif midNumber > target:
@@ -97,9 +120,7 @@ class Guesser:
                 leftBound = midIndex - 1
                 rightBound = midIndex + 1
                 break
-        result = elements[leftBound + 1]
-        print()
-        if result == target:
-            return target, trials
-        else:
+        if leftBound + 1 >= rightBound or elements[leftBound + 1] != target:
             return None, trials
+        else:
+            return target, trials
