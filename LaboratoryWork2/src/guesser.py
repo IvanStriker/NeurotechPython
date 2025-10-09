@@ -47,7 +47,7 @@ class Guesser:
 
         Raises:
             TypeError: if the types of the params don't match
-            the signature
+                the signature
         """
         e = TypeError(
                 "Parameters of wrong types for Guesser.guess.\n"
