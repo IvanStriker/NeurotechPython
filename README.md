@@ -25,3 +25,16 @@ Author: Ivan Vinogradov (501493)
 #### Docs description:
 - docs can be found by opening `./LaboratoryWork2/docs/_build/html/index.html`
 - other files in `./LaboratoryWork2/docs` are for Sphinx only
+- ### Laboratory work 3
+#### Place: `./LaboratoryWork3`
+#### Structure:
+- `./LaboratoryWork3/src` - code files
+- `./LaboratoryWork3/docs` - Sphinx documentation files
+#### Code files description:
+- method `tree_maker.py -> TreeMaker -> genBinTree` realizes the prime algorithm using `TreeMaker`'s private methods
+- file `tree_maker.py` includes classes `TreeMaker` (main class), `TreeNode` (realizes my tree data structure) and enums `TreeMakingMethod` (for recursion and bfs options), `TreeView` (for dict and TreeNode structures)
+- file `test_tree_maker.py` includes all the testing logic
+#### Docs description:
+- docs can be found by opening `./LaboratoryWork3/docs/html/index.html`
+- other files in `./LaboratoryWork3/docs` are for Sphinx only
+

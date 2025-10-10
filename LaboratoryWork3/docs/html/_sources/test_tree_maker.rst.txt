@@ -1,0 +1,7 @@
+test\_tree\_maker module
+========================
+
+.. automodule:: test_tree_maker
+   :members:
+   :show-inheritance:
+   :undoc-members:
