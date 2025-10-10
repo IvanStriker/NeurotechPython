@@ -25,7 +25,7 @@ Author: Ivan Vinogradov (501493)
 #### Docs description:
 - docs can be found by opening `./LaboratoryWork2/docs/_build/html/index.html`
 - other files in `./LaboratoryWork2/docs` are for Sphinx only
-- ### Laboratory work 3
+### Laboratory work 3
 #### Place: `./LaboratoryWork3`
 #### Structure:
 - `./LaboratoryWork3/src` - code files
@@ -45,5 +45,6 @@ Author: Ivan Vinogradov (501493)
 #### Code files description:
 - function `main.py -> main` is the entry point. It realizes UI
 - class `factorial_counter.py -> FactorialCounter` realizes all needed factorial counting and benchmarking method
-
+### Laboratory work 5
+Its functionality is realized in **LaboratoryWork3**
 
