@@ -5,7 +5,6 @@ from factorial_counter import FactorialCounter as FC
 
 
 def main():
-
     random.seed(42)
     test_data = list(range(10, 300, 10))
 
@@ -15,16 +14,17 @@ def main():
     res_iterative_cached = []
 
     for n in test_data:
-      res_recursive.append(FC.benchmark(FC.countRecursively, n,
-                                        number=1000, repeat=5))
-      res_iterative.append(FC.benchmark(FC.countIteratively, n,
-                                        number=1000, repeat=5))
-      res_recursive_cached.append(FC.benchmark(FC.countRecursivelyCached, n,
-                                        number=1000, repeat=5))
-      res_iterative_cached.append(FC.benchmark(FC.countIterativelyCached, n,
-                                        number=1000, repeat=5))
+        res_recursive.append(FC.benchmark(FC.countRecursively, n,
+                                          number=1000, repeat=5))
+        res_iterative.append(FC.benchmark(FC.countIteratively, n,
+                                          number=1000, repeat=5))
+        res_recursive_cached.append(FC.benchmark(FC.countRecursivelyCached, n,
+                                                 number=1000, repeat=5))
+        res_iterative_cached.append(FC.benchmark(FC.countIterativelyCached, n,
+                                                 number=1000, repeat=5))
 
     # Визуализация
+    plt.figure(figsize=(15, 10))
     plt.subplot(1, 2, 1)
     plt.plot(test_data, res_recursive, label="Рекурсивный")
     plt.plot(test_data, res_iterative, label="Итеративный")
@@ -40,7 +40,6 @@ def main():
     plt.ylabel("Время (сек)")
     plt.title("Сравнение рекурсивного и итеративного факториала с хешами")
     plt.legend()
-    plt.show()
     plt.savefig("outputImage.png")
 
 

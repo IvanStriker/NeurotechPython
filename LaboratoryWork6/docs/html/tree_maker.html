@@ -1,0 +1,359 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tree_maker module &mdash; LaboratoryWork6 1.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=56dcb7b8"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="utility module" href="utility.html" />
+    <link rel="prev" title="main module" href="main.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            LaboratoryWork6
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">benchmark module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">tree_maker module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tree_maker.TreeMaker"><code class="docutils literal notranslate"><span class="pre">TreeMaker</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tree_maker.TreeMaker._WrongMethodValueError"><code class="docutils literal notranslate"><span class="pre">TreeMaker._WrongMethodValueError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tree_maker.TreeMaker._WrongOutputValueError"><code class="docutils literal notranslate"><span class="pre">TreeMaker._WrongOutputValueError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tree_maker.TreeMaker.genBinTree"><code class="docutils literal notranslate"><span class="pre">TreeMaker.genBinTree()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tree_maker.TreeMakingMethod"><code class="docutils literal notranslate"><span class="pre">TreeMakingMethod</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tree_maker.TreeMakingMethod.RECURSION"><code class="docutils literal notranslate"><span class="pre">TreeMakingMethod.RECURSION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tree_maker.TreeMakingMethod.BFS"><code class="docutils literal notranslate"><span class="pre">TreeMakingMethod.BFS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">TreeMakingMethod.BFS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">TreeMakingMethod.RECURSION</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tree_maker.TreeNode"><code class="docutils literal notranslate"><span class="pre">TreeNode</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tree_maker.TreeNode.value"><code class="docutils literal notranslate"><span class="pre">TreeNode.value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tree_maker.TreeNode.leftNode"><code class="docutils literal notranslate"><span class="pre">TreeNode.leftNode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tree_maker.TreeNode.rightNode"><code class="docutils literal notranslate"><span class="pre">TreeNode.rightNode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tree_maker.TreeNode.parentNode"><code class="docutils literal notranslate"><span class="pre">TreeNode.parentNode</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tree_maker.TreeView"><code class="docutils literal notranslate"><span class="pre">TreeView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tree_maker.TreeView.DICT"><code class="docutils literal notranslate"><span class="pre">TreeView.DICT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tree_maker.TreeView.TREE_NODES"><code class="docutils literal notranslate"><span class="pre">TreeView.TREE_NODES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">TreeView.DICT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">TreeView.TREE_NODES</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="utility.html">utility module</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">LaboratoryWork6</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">src</a></li>
+      <li class="breadcrumb-item active">tree_maker module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/tree_maker.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-tree_maker">
+<span id="tree-maker-module"></span><h1>tree_maker module<a class="headerlink" href="#module-tree_maker" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="tree_maker.TreeMaker">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tree_maker.</span></span><span class="sig-name descname"><span class="pre">TreeMaker</span></span><a class="headerlink" href="#tree_maker.TreeMaker" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The main class of the project.</p>
+<p>It provides you with methods able to make different sorts of trees.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tree_maker.TreeMaker._WrongMethodValueError">
+<span class="sig-name descname"><span class="pre">_WrongMethodValueError</span></span><a class="headerlink" href="#tree_maker.TreeMaker._WrongMethodValueError" title="Link to this definition"></a></dt>
+<dd><p>An error raised when there
+is no such making tree algorithm. All available algorithms
+are listed in TreeMakingMethods enum.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ValueError</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tree_maker.TreeMaker._WrongOutputValueError">
+<span class="sig-name descname"><span class="pre">_WrongOutputValueError</span></span><a class="headerlink" href="#tree_maker.TreeMaker._WrongOutputValueError" title="Link to this definition"></a></dt>
+<dd><p>An error raised when there
+is no such tree structure. All available structures
+are listed in TreeView enum.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ValueError</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tree_maker.TreeMaker.genBinTree">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">genBinTree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">height:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">4,</span> <span class="pre">root:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">3,</span> <span class="pre">l_b:</span> <span class="pre">~typing.Callable[[int],</span> <span class="pre">int]</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">TreeMaker.&lt;lambda&gt;&gt;,</span> <span class="pre">r_b:</span> <span class="pre">~typing.Callable[[int],</span> <span class="pre">int]</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">TreeMaker.&lt;lambda&gt;&gt;,</span> <span class="pre">method:</span> <span class="pre">~tree_maker.TreeMakingMethod</span> <span class="pre">=</span> <span class="pre">TreeMakingMethod.RECURSION,</span> <span class="pre">output:</span> <span class="pre">~tree_maker.TreeView</span> <span class="pre">=</span> <span class="pre">TreeView.DICT</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#tree_maker.TreeNode" title="tree_maker.TreeNode"><span class="pre">TreeNode</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#tree_maker.TreeMaker.genBinTree" title="Link to this definition"></a></dt>
+<dd><p>This is the main function. It constructs trees.</p>
+<p>It generates the tree of the height, root value,
+functions describing algorithm to count the child’s values,
+algorithm of tree building and final structure of the tree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>height</strong> (<em>int</em>) – The amount of <cite>floors</cite> in the tree:
+2**nodes - 1 == height</p></li>
+<li><p><strong>root</strong> (<em>int</em>) – The root node’s value</p></li>
+<li><p><strong>l_b</strong> (<em>Callable</em><em>[</em><em>[</em><em>int</em><em>]</em><em>, </em><em>int</em><em>]</em>) – functions describing algorithm
+to count the left child’s values. It accepts
+the current node’s value and returns its left child’s
+value</p></li>
+<li><p><strong>r_b</strong> (<em>Callable</em><em>[</em><em>[</em><em>int</em><em>]</em><em>, </em><em>int</em><em>]</em>) – functions describing algorithm
+to count the right child’s values. It accepts
+the current node’s value and returns its right child’s
+value</p></li>
+<li><p><strong>method</strong> (<a class="reference internal" href="#tree_maker.TreeMakingMethod" title="tree_maker.TreeMakingMethod"><em>TreeMakingMethod</em></a>) – The algorithm of tree building.
+For more info see enum TreeMakingMethod</p></li>
+<li><p><strong>output</strong> (<a class="reference internal" href="#tree_maker.TreeView" title="tree_maker.TreeView"><em>TreeView</em></a>) – The structure of the final tree.
+For more info see enum TreeView</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The tree constructed. The type of it</dt><dd><p>depends on the tree building method chosen.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict | <a class="reference internal" href="#tree_maker.TreeNode" title="tree_maker.TreeNode">TreeNode</a> | None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>TypeError</strong> – If types of the arguments doesn’t match
+    the signature.</p></li>
+<li><p><strong>ValueError</strong> – If method or output argument doesn’t contain
+    any of the values listed in TreeMakingMethod and TreeView
+    respectively.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tree_maker.TreeMakingMethod">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tree_maker.</span></span><span class="sig-name descname"><span class="pre">TreeMakingMethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tree_maker.TreeMakingMethod" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Enum for different tree making algorithms</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tree_maker.TreeMakingMethod.RECURSION">
+<span class="sig-name descname"><span class="pre">RECURSION</span></span><a class="headerlink" href="#tree_maker.TreeMakingMethod.RECURSION" title="Link to this definition"></a></dt>
+<dd><p>Recursive algorithm</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#tree_maker.TreeMakingMethod" title="tree_maker.TreeMakingMethod">TreeMakingMethod</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tree_maker.TreeMakingMethod.BFS">
+<span class="sig-name descname"><span class="pre">BFS</span></span><a class="headerlink" href="#tree_maker.TreeMakingMethod.BFS" title="Link to this definition"></a></dt>
+<dd><p>Breadth first search algorithm</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#tree_maker.TreeMakingMethod" title="tree_maker.TreeMakingMethod">TreeMakingMethod</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">BFS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">RECURSION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tree_maker.TreeNode">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tree_maker.</span></span><span class="sig-name descname"><span class="pre">TreeNode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">leftNode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#tree_maker.TreeNode" title="tree_maker.TreeNode"><span class="pre">TreeNode</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rightNode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#tree_maker.TreeNode" title="tree_maker.TreeNode"><span class="pre">TreeNode</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parentNode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#tree_maker.TreeNode" title="tree_maker.TreeNode"><span class="pre">TreeNode</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tree_maker.TreeNode" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class representing trees saved in lots of separate nodes.</p>
+<p>Each node is an object of this TreeNode class. They are bound
+through its attributes-links.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tree_maker.TreeNode.value">
+<span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#tree_maker.TreeNode.value" title="Link to this definition"></a></dt>
+<dd><p>values saved in a current node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tree_maker.TreeNode.leftNode">
+<span class="sig-name descname"><span class="pre">leftNode</span></span><a class="headerlink" href="#tree_maker.TreeNode.leftNode" title="Link to this definition"></a></dt>
+<dd><p>a link to the lift child</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#tree_maker.TreeNode" title="tree_maker.TreeNode">TreeNode</a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tree_maker.TreeNode.rightNode">
+<span class="sig-name descname"><span class="pre">rightNode</span></span><a class="headerlink" href="#tree_maker.TreeNode.rightNode" title="Link to this definition"></a></dt>
+<dd><p>a link to the right child</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#tree_maker.TreeNode" title="tree_maker.TreeNode">TreeNode</a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tree_maker.TreeNode.parentNode">
+<span class="sig-name descname"><span class="pre">parentNode</span></span><a class="headerlink" href="#tree_maker.TreeNode.parentNode" title="Link to this definition"></a></dt>
+<dd><p>a link to the parent item</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#tree_maker.TreeNode" title="tree_maker.TreeNode">TreeNode</a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tree_maker.TreeView">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tree_maker.</span></span><span class="sig-name descname"><span class="pre">TreeView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tree_maker.TreeView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Enum for different types of tree structures</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tree_maker.TreeView.DICT">
+<span class="sig-name descname"><span class="pre">DICT</span></span><a class="headerlink" href="#tree_maker.TreeView.DICT" title="Link to this definition"></a></dt>
+<dd><p>tree inside a dict</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#tree_maker.TreeView" title="tree_maker.TreeView">TreeView</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tree_maker.TreeView.TREE_NODES">
+<span class="sig-name descname"><span class="pre">TREE_NODES</span></span><a class="headerlink" href="#tree_maker.TreeView.TREE_NODES" title="Link to this definition"></a></dt>
+<dd><p>tree saved in TreeNode objects</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#tree_maker.TreeView" title="tree_maker.TreeView">TreeView</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">DICT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">TREE_NODES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="main.html" class="btn btn-neutral float-left" title="main module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="utility.html" class="btn btn-neutral float-right" title="utility module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Ivan Vinogradov.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

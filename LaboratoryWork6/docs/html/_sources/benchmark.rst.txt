@@ -1,0 +1,7 @@
+benchmark module
+================
+
+.. automodule:: benchmark
+   :members:
+   :show-inheritance:
+   :undoc-members:
