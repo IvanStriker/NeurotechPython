@@ -3,7 +3,7 @@ import io
 import requests
 
 from currency import get_currencies
-
+from decorators import trace
 
 # Тесты
 class TestStreamWrite(unittest.TestCase):
@@ -14,17 +14,15 @@ class TestStreamWrite(unittest.TestCase):
 
     def setUp(self):
         self.nonstandardstream = io.StringIO()
-
-        try:
-            self.get_currencies = get_currencies(['USD'],
-                                                 url="https://",
-                                                 handle=self.nonstandardstream)
-        except:
-            pass
-        # self.trace = trace(get_currencies, handle=self.nonstandardstream)
+        self.trace = trace(get_currencies, handle=self.nonstandardstream)
 
     def test_writing_stream(self):
         with self.assertRaises(requests.exceptions.RequestException):
+            self.get_currencies = self.trace(
+                ['USD'],
+                url="https://",
+                handle=self.nonstandardstream
+            )
             self.raisedCounting += 1
             self.assertEqual(
                 self.nonstandardstream.getvalue().count(
