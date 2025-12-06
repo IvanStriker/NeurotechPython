@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block main %}
+    <table>
+        {% for item in users %}
+          <tr>
+              <td width="200">{{ item.id }}</td>
+              <td width="200"><a href="/profile?id={{ item.id }}">
+                  {{ item.name }}
+              </a></td>
+          </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

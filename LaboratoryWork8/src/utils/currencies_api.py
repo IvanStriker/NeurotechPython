@@ -2,13 +2,18 @@ import json
 
 import requests
 
-import decorators
+from .decorators import logger
+from logging import getLogger
+from LaboratoryWork8.src.models.currency import Currency
+from .decorators import check_types
 
 basicAddress: str = "https://www.cbr-xml-daily.ru/daily_json.js"
+logFile = getLogger("logs")
 
 
-@decorators.check_types(list, str)
-def get_currencies(currency_codes: list,
+@logger(handle=logFile)
+@check_types(list|None, str)
+def get_currencies(currency_codes: list = None,
                    url: str = basicAddress) -> dict:
     """
     Gets currency rates from the central Russian bank
@@ -19,7 +24,8 @@ def get_currencies(currency_codes: list,
         url (str): The url address to the bank API
 
     Returns:
-        dict: The dict with pairs: currency code - currency rate
+        dict: The dict, where the keys are currencies' ids
+            and values are objects of Currency class
     """
     try:
         response = requests.get(url)
@@ -47,9 +53,17 @@ def get_currencies(currency_codes: list,
             f"\n{e.__str__()}"
         )
 
-    for code in currency_codes:
+    source = currency_codes if currency_codes else received_currency
+    for code in source:
         try:
-            currencies[code] = float(received_currency[code]["Value"])
+            currencies[received_currency[code]["ID"]] = Currency(
+                id=received_currency[code]["ID"],
+                name=received_currency[code]["Name"],
+                value=float(received_currency[code]["Value"]),
+                char_code=received_currency[code]["CharCode"],
+                num_code=int(received_currency[code]["NumCode"]),
+                nominal=int(received_currency[code]["Nominal"])
+            )
         except KeyError as e:
             raise KeyError(
                 f"get_currency: received no info about {code}...\n"
@@ -58,17 +72,8 @@ def get_currencies(currency_codes: list,
         except ValueError as e:
             raise ValueError(
                 f"get_currency: can't parse to float "
-                f"{received_currency[code]["Value"]}...\n{e.__str__()}"
+                f"{received_currency[code]["Value"]}..."
+                f"{e.__str__()}"
             )
-
     return currencies
     # raise requests.exceptions.RequestException('Упали с исключением')
-
-
-if __name__ == "__main__":
-    # Пример использования функции:
-    currency_list = ['USD', 'EUR', 'GBP', 'NNZ']
-
-    currency_data = get_currencies(currency_list)
-    if currency_data:
-         print(currency_data)

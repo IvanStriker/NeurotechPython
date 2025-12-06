@@ -1,0 +1,13 @@
+Function get_currencies is being traced now...
+Calling get_currencies with params: (['USD', 'EUR'],)[]
+
+
+Executing of get_currencies finished successfully
+
+Calling get_currencies with params: (['PUPU'],)[]
+
+
+!!=>1. Error: when requesting API: "get_currency: received no info about PUPU...\n'PUPU'"
+
+Executing of get_currencies finished with an error
+

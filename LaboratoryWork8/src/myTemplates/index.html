@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block main %}
+{% if user %}
+    <h1>{{ user.id }} {{ user.name }}</h1>
+    <table>
+        {% for item in subscriptions %}
+          <tr>
+              <td width="200">{{ item.user.id }}</td>
+              <td width="200">{{ item.user.name }}</td>
+              <td width="200">{{ item.currency.charCode }}</td>
+              <td width="200">{{ item.currency.value }}</td>
+          </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+{% endblock %}

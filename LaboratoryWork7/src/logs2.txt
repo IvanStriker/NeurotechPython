@@ -1,0 +1,8 @@
+Function solve_quadratic is being traced now...
+Calling solve_quadratic with params: (1, 2, 3)[]
+
+
+!!=>1. Error: when requesting API: Discriminant < 0: no real roots
+
+Executing of solve_quadratic finished with an error
+

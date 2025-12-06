@@ -8,74 +8,6 @@ import requests.exceptions
 import logging
 
 
-class WarningError(Exception):
-    def __init__(self, text: str):
-        Exception.__init__(self, text)
-
-
-def loggerSolveQuadratics(func: Callable = None, *, handle=sys.stdout):
-    """
-    An advanced logging decorator for solving equations.
-    It works in 4 stated: info, warning,
-    error and critical.
-
-    Args:
-        func: Function to decorate
-        handle: Stream for logging
-
-    Returns:
-        The decorated function
-    """
-    if isinstance(handle, logging.Logger):
-        info = handle.info
-        error = handle.error
-        debug = handle.debug
-        critical = handle.critical
-    else:
-        info = error = critical = debug = handle.write
-
-    if func is None:
-        return lambda f: logger(f, handle=handle)
-
-    info(f"Function {func.__name__} is being traced now...")
-
-    error_amount: int = 0
-
-    @functools.wraps(func)
-    def inner(a, b, c):
-        nonlocal error_amount
-        logging.info(f"Solving equation: {a}x^2 + {b}x + {c} = 0\n")
-        success: bool = True
-        res = (0, 0, None)
-        try:
-            res = func(a, b, c)
-            return res[:-1]
-        except TypeError as e:
-            success = False
-            error_amount += 1
-            critical(f"!!=>{error_amount}. Critical failureParameter "
-                     f"{e}" + "\n")
-            raise e
-        except WarningError as e:
-            error_amount += 1
-            debug(f"!!=>{error_amount}. Warning: {e}" + "\n")
-            return None
-        except Exception as e:
-            success = False
-            error_amount += 1
-            error(f"!!=>{error_amount}. Error: {e}" + "\n")
-            raise e
-        finally:
-            info(f"Discriminant is {res[2]}\n")
-            info(f"Executing of {func.__name__} finished {
-            "successfully\n" if success else "with an error\n"
-            }")
-
-    # print('return inner')
-    return inner
-
-
-
 def logger(func: Callable = None, *, handle=sys.stdout):
     """
     A simple logging decorator.
@@ -96,7 +28,7 @@ def logger(func: Callable = None, *, handle=sys.stdout):
     if func is None:
         return lambda f: logger(f, handle=handle)
 
-    info(f"Function {func.__name__} is being traced now...\n")
+    info(f"Function {func.__name__} is being traced now...")
 
     error_amount: int = 0
 

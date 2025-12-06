@@ -1,0 +1,322 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="container py-4">
+
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-gradient-primary text-white">
+            <div class="d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">
+                    <i class="bi bi-people-fill me-2"></i>Пользователи
+                </h4>
+                <span class="badge bg-light text-primary fs-6">
+                    Всего: {{ users|length }}
+                </span>
+            </div>
+        </div>
+        
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col" class="ps-4 py-3">
+                                <i class="bi bi-person-badge me-2"></i>ID
+                            </th>
+                            <th scope="col" class="py-3">
+                                <i class="bi bi-person-circle me-2"></i>Имя пользователя
+                            </th>
+                            <th scope="col" class="text-center py-3">
+                                <i class="bi bi-gear me-2"></i>Действия
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr class="align-middle">
+                            <td class="ps-4">
+                                <a href="/profile?id={{ user.id }}" 
+                                   class="text-decoration-none fw-bold text-primary">
+                                    <div class="d-flex align-items-center">
+                                        <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3"
+                                             style="width: 40px; height: 40px;">
+                                            <span class="text-primary fw-bold"></span>
+                                        </div>
+                                        <div>
+                                            <div class="fw-bold">#{{ user.id }}</div>
+                                            <small class="text-muted">ID пользователя</small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </td>
+                            
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="bg-info bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" 
+                                         style="width: 40px; height: 40px;">
+                                        <i class="bi bi-person text-info"></i>
+                                    </div>
+                                    <div>
+                                        <div class="fw-semibold">{{ user.name }}</div>
+                                        <small class="text-muted">Пользователь системы</small>
+                                    </div>
+                                </div>
+                            </td>
+                            
+                            <td class="text-center">
+                                <div class="btn-group" role="group">
+                                    <a href="/profile?id={{ user.id }}" 
+                                       class="btn btn-outline-primary btn-sm" 
+                                       title="Просмотр профиля">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                    <a href="/edit?id={{ user.id }}" 
+                                       class="btn btn-outline-success btn-sm" 
+                                       title="Редактировать">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <button type="button" 
+                                            class="btn btn-outline-danger btn-sm" 
+                                            title="Удалить"
+                                            onclick="confirmDelete({{ user.id }})">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="3" class="text-center py-5">
+                                <div class="text-muted">
+                                    <i class="bi bi-people display-6 d-block mb-3"></i>
+                                    <h5>Нет пользователей</h5>
+                                    <p class="mb-0">Список пользователей пуст</p>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="card-footer bg-light">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <nav aria-label="Навигация по страницам">
+                        <ul class="pagination pagination-sm mb-0">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">
+                                    <i class="bi bi-chevron-left"></i>
+                                </a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">
+                                    <i class="bi bi-chevron-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-md-6 text-end">
+                    <small class="text-muted">
+                        <i class="bi bi-info-circle me-1"></i>
+                        Обновлено: сейчас
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+:root {
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+/* Темная тема */
+[data-bs-theme="dark"] {
+    --bs-body-bg: #1a202c;
+    --bs-body-color: #e2e8f0;
+}
+
+[data-bs-theme="dark"] .card {
+    background-color: #2d3748;
+    border-color: #4a5568;
+}
+
+[data-bs-theme="dark"] .card-header.bg-gradient-primary {
+    background: linear-gradient(135deg, #4c51bf 0%, #2d3748 100%) !important;
+}
+
+[data-bs-theme="dark"] .table {
+    --bs-table-bg: transparent;
+    --bs-table-color: #e2e8f0;
+    --bs-table-border-color: #4a5568;
+}
+
+[data-bs-theme="dark"] .table-light {
+    --bs-table-bg: #2d3748;
+    --bs-table-color: #e2e8f0;
+    border-color: #4a5568;
+}
+
+[data-bs-theme="dark"] .card-footer.bg-light {
+    background-color: #2d3748 !important;
+    border-top: 1px solid #4a5568;
+}
+
+[data-bs-theme="dark"] .text-muted {
+    color: #a0aec0 !important;
+}
+
+[data-bs-theme="dark"] .btn-outline-primary {
+    --bs-btn-color: #63b3ed;
+    --bs-btn-border-color: #63b3ed;
+    --bs-btn-hover-bg: #63b3ed;
+    --bs-btn-hover-border-color: #63b3ed;
+}
+
+[data-bs-theme="dark"] .btn-outline-success {
+    --bs-btn-color: #68d391;
+    --bs-btn-border-color: #68d391;
+}
+
+[data-bs-theme="dark"] .btn-outline-danger {
+    --bs-btn-color: #fc8181;
+    --bs-btn-border-color: #fc8181;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(13, 110, 253, 0.1);
+    transition: background-color 0.2s ease;
+}
+
+[data-bs-theme="dark"] .table-hover tbody tr:hover {
+    background-color: rgba(99, 179, 237, 0.1);
+}
+
+.card {
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.bg-gradient-primary {
+    background: var(--primary-gradient);
+}
+
+.btn-group .btn {
+    border-radius: 6px !important;
+    margin: 0 2px;
+    transition: all 0.2s ease;
+}
+
+.btn-group .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.theme-switch .btn {
+    transition: all 0.3s ease;
+}
+
+.theme-switch .btn:hover {
+    transform: rotate(15deg) scale(1.1);
+}
+</style>
+
+<script>
+// Функция смены темы
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    // Применяем новую тему
+    document.documentElement.setAttribute('data-bs-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    
+    // Обновляем иконку
+    updateThemeIcon(newTheme);
+}
+
+// Обновление иконки темы
+function updateThemeIcon(theme) {
+    const icon = document.getElementById('theme-icon');
+    if (theme === 'dark') {
+        icon.className = 'bi bi-sun-fill';
+        icon.parentElement.title = 'Переключить на светлую тему';
+    } else {
+        icon.className = 'bi bi-moon-fill';
+        icon.parentElement.title = 'Переключить на темную тему';
+    }
+}
+
+// Восстанавливаем тему при загрузке
+document.addEventListener('DOMContentLoaded', function() {
+    // Проверяем сохраненную тему или используем системную
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    let theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-bs-theme', theme);
+    
+    // Устанавливаем правильную иконку
+    updateThemeIcon(theme);
+    
+    // Слушаем изменения системной темы
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (!localStorage.getItem('theme')) {
+            const newTheme = e.matches ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-bs-theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+    });
+});
+
+// Функция подтверждения удаления
+function confirmDelete(userId) {
+    if (confirm('Вы уверены, что хотите удалить пользователя #' + userId + '?')) {
+        // Здесь можно добавить код для удаления
+        window.location.href = '/delete?id=' + userId;
+    }
+}
+
+// Анимация при наведении на строки
+document.addEventListener('DOMContentLoaded', function() {
+    const rows = document.querySelectorAll('tbody tr');
+    rows.forEach(row => {
+        row.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateX(5px)';
+            this.style.transition = 'transform 0.2s ease';
+        });
+        row.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateX(0)';
+        });
+    });
+});
+
+// Анимация загрузки карточки
+document.addEventListener('DOMContentLoaded', function() {
+    const card = document.querySelector('.card');
+    if (card) {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, 100);
+    }
+});
+</script>
+
+<!-- Подключаем Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+{% endblock %}

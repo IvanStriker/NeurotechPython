@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<table>
+    {% for item in currencies %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.charCode }}</td>
+            <td>{{ item.value }}</td>
+            <td>{{ item.nominal }}</td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}

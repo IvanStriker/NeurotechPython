@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+
+{% block main %}
+{% if user %}
+    <div class="container py-4">
+        <!-- Заголовок профиля -->
+        <div class="card shadow-sm mb-4 border-0">
+            <div class="card-body p-4">
+                <div class="d-flex align-items-center">
+                    <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-4"
+                         style="width: 80px; height: 80px;">
+                        <i class="bi bi-person-fill text-primary" style="font-size: 2rem;"></i>
+                    </div>
+                    <div>
+                        <h2 class="card-title mb-1">{{ user.name }}</h2>
+                        <div class="d-flex align-items-center">
+                            <span class="badge bg-secondary me-2">ID: {{ user.id }}</span>
+                            <small class="text-muted">
+                                <i class="bi bi-calendar-event me-1"></i>
+                                Профиль создан
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Список подписок -->
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-gradient-primary text-white py-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">
+                        <i class="bi bi-bell-fill me-2"></i>Подписки на валюты
+                    </h4>
+                    <span class="badge bg-light text-primary fs-6">
+                        Всего: {{ subscriptions|length }}
+                    </span>
+                </div>
+            </div>
+
+            <div class="card-body p-0">
+                {% if subscriptions %}
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col" class="ps-4 py-3">
+                                    <i class="bi bi-person-badge me-2"></i>Пользователь
+                                </th>
+                                <th scope="col" class="py-3">
+                                    <i class="bi bi-person me-2"></i>Имя
+                                </th>
+                                <th scope="col" class="py-3">
+                                    <i class="bi bi-currency-exchange me-2"></i>Валюта
+                                </th>
+                                <th scope="col" class="text-center py-3">
+                                    <i class="bi bi-clock-history me-2"></i>Курс
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in subscriptions %}
+                            <tr class="align-middle">
+                                <td class="ps-4">
+                                    <div class="d-flex align-items-center">
+                                        <div class="bg-info bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3"
+                                             style="width: 40px; height: 40px;">
+                                            <span class="text-info fw-bold"></span>
+                                        </div>
+                                        <div>
+                                            <div class="fw-bold">ID {{ item.user.id }}</div>
+                                            <small class="text-muted">Пользователь</small>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3"
+                                             style="width: 40px; height: 40px;">
+                                            <i class="bi bi-person text-success"></i>
+                                        </div>
+                                        <div>
+                                            <div class="fw-semibold">{{ item.user.name }}</div>
+                                            <small class="text-muted">Подписчик</small>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="bg-warning bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3"
+                                             style="width: 40px; height: 40px;">
+                                            <i class="bi bi-cash-coin text-warning"></i>
+                                        </div>
+                                        <div>
+                                            <div class="fw-bold text-uppercase">{{ item.currency.charCode }}</div>
+                                            <small class="text-muted">Код валюты</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="d-flex flex-column align-items-center">
+                                        <span class="fw-bold text-primary fs-5">
+                                            {{ "%.4f"|format(item.currency.value) }}
+                                        </span>
+                                        <div class="text-muted small">руб.</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="text-center py-5">
+                    <div class="text-muted">
+                        <i class="bi bi-bell-slash display-6 d-block mb-3"></i>
+                        <h4>Нет подписок</h4>
+                        <p class="mb-0">У пользователя пока нет активных подписок на валюты</p>
+                        <!-- ИЗМЕНЕНИЕ 1: Ссылка вместо кнопки -->
+                        <a href="/currencies" class="btn btn-primary mt-3 text-decoration-none">
+                            <i class="bi bi-plus-circle me-2"></i>Добавить подписку
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            {% if subscriptions %}
+            <div class="card-footer bg-light">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <small class="text-muted">
+                            <i class="bi bi-info-circle me-1"></i>
+                            Показано {{ subscriptions|length }} подписок
+                        </small>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <!-- ИЗМЕНЕНИЕ 2: Заменяем button на ссылку -->
+                        <a href="/currencies" class="btn btn-sm btn-outline-success ms-2 text-decoration-none">
+                            <i class="bi bi-plus-circle me-1"></i>Добавить
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <style>
+    .card {
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: rgba(13, 110, 253, 0.05);
+        transition: background-color 0.2s ease;
+    }
+
+    .table td, .table th {
+        vertical-align: middle;
+    }
+
+    .badge {
+        font-weight: 500;
+    }
+
+    /* Темная тема */
+    [data-bs-theme="dark"] .table-light {
+        background-color: #2d3748 !important;
+        color: #e2e8f0;
+    }
+
+    [data-bs-theme="dark"] .table-hover tbody tr:hover {
+        background-color: rgba(99, 179, 237, 0.1);
+    }
+
+    [data-bs-theme="dark"] .card-footer.bg-light {
+        background-color: #2d3748 !important;
+        border-top: 1px solid #4a5568;
+    }
+    </style>
+
+    <script>
+
+    // Проверяем все кнопки
+    document.addEventListener('DOMContentLoaded', function() {
+        // Анимация строк таблицы
+        const rows = document.querySelectorAll('tbody tr');
+        rows.forEach((row, index) => {
+            row.style.opacity = '0';
+            row.style.transform = 'translateX(-20px)';
+
+            setTimeout(() => {
+                row.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                row.style.opacity = '1';
+                row.style.transform = 'translateX(0)';
+            }, index * 100);
+        });
+
+        // Анимация карточек
+        const cards = document.querySelectorAll('.card');
+        cards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+
+            setTimeout(() => {
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 200);
+        });
+    });
+
+    </script>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+{% endif %}
+{% endblock %}

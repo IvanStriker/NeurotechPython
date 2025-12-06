@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block main %}
+    {{ user.id }}
+    {{ user.name }}
+    <table>
+        {% for item in subscriptions %}
+          <tr>
+              <td width="200">{{ item.user.id }}</td>
+              <td width="200">{{ item.user.name }}</td>
+              <td width="200">{{ item.currency.charCode }}</td>
+          </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

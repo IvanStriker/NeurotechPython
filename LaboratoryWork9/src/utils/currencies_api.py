@@ -2,24 +2,27 @@ import json
 
 import requests
 
-import decorators
+from .decorators import logger
+from logging import getLogger
+from models.currency import Currency
 
 basicAddress: str = "https://www.cbr-xml-daily.ru/daily_json.js"
+logFile = getLogger("logs")
 
 
-@decorators.check_types(list, str)
-def get_currencies(currency_codes: list,
+@logger(handle=logFile)
+def get_currencies(currency_codes: list = None,
                    url: str = basicAddress) -> dict:
     """
-    Gets currency rates from the central Russian bank
+    Получает курсы валют с API Центробанка России.
 
     Args:
-        currency_codes (list): The list of the short
-            currency codes: "USD", "EUR", ...
-        url (str): The url address to the bank API
+        currency_codes (list): Список символьных кодов валют (например, ['USD', 'EUR']).
+        url (str): ...
 
     Returns:
-        dict: The dict with pairs: currency code - currency rate
+        dict: Словарь, где ключи - символьные коды валют, а значения - их курсы.
+              Возвращает None в случае ошибки запроса.
     """
     try:
         response = requests.get(url)
@@ -47,9 +50,17 @@ def get_currencies(currency_codes: list,
             f"\n{e.__str__()}"
         )
 
-    for code in currency_codes:
+    source = currency_codes if currency_codes else received_currency
+    for code in source:
         try:
-            currencies[code] = float(received_currency[code]["Value"])
+            currencies[str(code)] = Currency(
+                id=received_currency[code]["ID"],
+                name=received_currency[code]["Name"],
+                value=float(received_currency[code]["Value"]),
+                char_code=received_currency[code]["CharCode"],
+                num_code=int(received_currency[code]["NumCode"]),
+                nominal=int(received_currency[code]["Nominal"])
+            )
         except KeyError as e:
             raise KeyError(
                 f"get_currency: received no info about {code}...\n"
@@ -58,17 +69,9 @@ def get_currencies(currency_codes: list,
         except ValueError as e:
             raise ValueError(
                 f"get_currency: can't parse to float "
-                f"{received_currency[code]["Value"]}...\n{e.__str__()}"
+                f"{received_currency[code]["Value"]}..."
+                f"{e.__str__()}"
             )
 
     return currencies
     # raise requests.exceptions.RequestException('Упали с исключением')
-
-
-if __name__ == "__main__":
-    # Пример использования функции:
-    currency_list = ['USD', 'EUR', 'GBP', 'NNZ']
-
-    currency_data = get_currencies(currency_list)
-    if currency_data:
-         print(currency_data)
