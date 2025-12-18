@@ -48,7 +48,7 @@ Author: Ivan Vinogradov (501493)
 ### Laboratory work 5
 Its functionality is realized in **LaboratoryWork3**
 ### Laboratory work 6
-#### Place: `./`
+#### Place: `./LaboratoryWork6`
 #### Structure:
 - `./LaboratoryWork6/src` - code files
 - `./LaboratoryWork6/img` - the file with matplotlib graph
@@ -61,3 +61,13 @@ Its functionality is realized in **LaboratoryWork3**
 #### Docs description:
 - docs can be found by opening `./LaboratoryWork6/docs/html/index.html`
 - other files in `./LaboratoryWork6/docs` are for Sphinx only
+### Laboratory work 7
+#### Place: `./LaboratoryWork7`
+#### Structure:
+- `./LaboratoryWork7/src` - code files
+#### Further description can be found in `./LaboratoryWork7/README.md`
+### Laboratory work 8
+#### Place: `./LaboratoryWork8`
+#### Structure:
+- `./LaboratoryWork8/src` - code files
+#### Further description can be found in `./LaboratoryWork8/README.md`

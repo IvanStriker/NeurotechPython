@@ -4,25 +4,28 @@ import requests
 
 from .decorators import logger
 from logging import getLogger
-from models.currency import Currency
+from LaboratoryWork9.src.models.currency import Currency
+from .decorators import check_types
 
 basicAddress: str = "https://www.cbr-xml-daily.ru/daily_json.js"
 logFile = getLogger("logs")
 
 
 @logger(handle=logFile)
+@check_types(list|None, str)
 def get_currencies(currency_codes: list = None,
                    url: str = basicAddress) -> dict:
     """
-    Получает курсы валют с API Центробанка России.
+    Gets currency rates from the central Russian bank
 
     Args:
-        currency_codes (list): Список символьных кодов валют (например, ['USD', 'EUR']).
-        url (str): ...
+        currency_codes (list): The list of the short
+            currency codes: "USD", "EUR", ...
+        url (str): The url address to the bank API
 
     Returns:
-        dict: Словарь, где ключи - символьные коды валют, а значения - их курсы.
-              Возвращает None в случае ошибки запроса.
+        dict: The dict, where the keys are currencies' ids
+            and values are objects of Currency class
     """
     try:
         response = requests.get(url)
@@ -53,12 +56,12 @@ def get_currencies(currency_codes: list = None,
     source = currency_codes if currency_codes else received_currency
     for code in source:
         try:
-            currencies[str(code)] = Currency(
-                id=received_currency[code]["ID"],
+            currencies[received_currency[code]["ID"]] = Currency(
+                0,
                 name=received_currency[code]["Name"],
                 value=float(received_currency[code]["Value"]),
                 char_code=received_currency[code]["CharCode"],
-                num_code=int(received_currency[code]["NumCode"]),
+                num_code=str(received_currency[code]["NumCode"]),
                 nominal=int(received_currency[code]["Nominal"])
             )
         except KeyError as e:
@@ -72,6 +75,5 @@ def get_currencies(currency_codes: list = None,
                 f"{received_currency[code]["Value"]}..."
                 f"{e.__str__()}"
             )
-
     return currencies
     # raise requests.exceptions.RequestException('Упали с исключением')
