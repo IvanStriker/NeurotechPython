@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block main %}
+<form method="GET" action="/login">
+    <div style="display: block; min-height: 70px;">
+        <label for="firstName">Имя: </label>
+        <input name="firstName" id="firstName"/>
+    </div>
+    <div style="display: block; min-height: 70px;">
+        <label for="lastName">Фамилия:</label>
+        <input name="lastName" id="lastName"/>
+    </div>
+    <div style="display: block; min-height: 70px;">
+        <button type="submit">Войти</button>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,6 @@
+Ordinary python: 0.06482945200696122
+MultyThreading python: 0.37078708299668506
+MultyProcessing python: 8.065997548997984
+Ordinary cython: 0.060796884004957974
+MultyThreading cython: 0.3302214090072084
+MultyProcessing cython: 7.793006520005292

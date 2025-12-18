@@ -5,18 +5,25 @@ from typing import Callable, Any
 
 import requests.exceptions
 
-import controllers
-import utils.sessions as sessions
+import LaboratoryWork9.src.controllers.rendering as controllers
+import LaboratoryWork9.src.controllers.api as api
+import LaboratoryWork9.src.utils.sessions as sessions
+from LaboratoryWork9.src.utils.decorators import check_types
 
 
 urls: dict[str, Callable] = {
     "/": controllers.root,
     "/currencies": controllers.currencies,
     "/currencies/subscribe": controllers.currencies,
-    "/users/": controllers.users,
+    "/currency/delete": api.currencyDelete,
+    "/currency/update": api.currencyUpdate,
+    "/currency/show": api.currencyShow,
+    "/users": controllers.users,
+    "/user": controllers.profile,
     "/profile": controllers.profile,
     "/signUp": controllers.signUp,
     "/login": controllers.login,
+    "/author": controllers.author,
 }
 
 
@@ -24,7 +31,17 @@ sessionManager = sessions.SessionManager(7200)
 
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
+    """
+    Custom HTTP request handler for the currency application.
+    """
+
     def __getSession(self) -> sessions.Session:
+        """
+        Gives back or creates a session
+
+        Returns:
+            sessions.Session: The current or created session object
+        """
         cookie = http.cookies.SimpleCookie(self.headers.get('Cookie', ''))
         if "session" in cookie:
             session = sessionManager.get(
@@ -35,15 +52,29 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         session = sessionManager.create()
         return session
 
+
+    @check_types(Any, sessions.Session)
     def __sendCookie(self, session: sessions.Session):
+        """
+        Sends session cookie to the client
+
+        Args:
+            session (sessions.Session): Session object to send
+        """
         cookie = http.cookies.SimpleCookie()
         cookie['session'] = session.id
         self.send_header('Set-Cookie', cookie.output(header=''))
 
     def do_POST(self):
+        """
+        Handles HTTP POST requests through redirecting to GET handler
+        """
         self.do_GET()
 
     def do_GET(self):
+        """
+        Prime request handler with routing
+        """
         queryPieces: list[str] = self.path.split("?")
         queryParams: dict[str, list[str]]
         try:
@@ -56,27 +87,29 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             html = urls[address](queryParams, session)
             self.send_response(200)
             self.send_header("Content-type",
-                             "text/html; encoding: utf-8")
+                             "text/html; encoding: utf-16")
             self.__sendCookie(session)
             self.end_headers()
             self.wfile.write(
                 bytes(
                     html,
-                    encoding="utf-8"
+                    encoding="utf-16"
                 )
             )
         except (requests.exceptions.RequestException,
-                TypeError, ValueError):
+                TypeError, ValueError) as e:
+            print(e)
             self.send_response(400)
             self.__sendCookie(session)
             self.end_headers()
         except KeyError as e:
-            print(e.args)
+            print(e)
             self.send_response(404)
             self.__sendCookie(session)
             self.end_headers()
 
     # def do_POST(self):
+    #     """Alternative POST handler implementation (commented out)."""
     #     if self.path.split("?")[0] not in views:
     #         self.send_response(404)
     #     else:
